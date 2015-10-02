@@ -1,0 +1,9 @@
+﻿Name: Cascade.Paypal
+AntiForgery: enabled
+Author: Dave Gardner
+Website: http://cascadepixels.com.au
+Version: 1.0
+OrchardVersion: 1.5
+Description: Paypal payment provider module for Cascade.Webshop
+Dependencies: Cascade.WebShop
+Category: Commerce

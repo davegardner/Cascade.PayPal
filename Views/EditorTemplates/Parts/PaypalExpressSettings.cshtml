@@ -1,0 +1,54 @@
+﻿@model Cascade.Paypal.Models.PaypalExpressPart
+<fieldset>
+    <legend>@T("Paypal Express")</legend>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.User)">@T("Paypal API User")</label>
+        @Html.TextBoxFor(m => m.User, new { @class = "textMedium" })
+        @Html.ValidationMessage("User", "*")
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Pwd)">@T("Paypal API Pwd")</label>
+        @Html.TextBoxFor(m => m.Pwd, new { @class = "textMedium" })
+        @Html.ValidationMessage("Pwd", "*")
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Signature)">@T("Paypal API Signature")</label>
+        @Html.TextBoxFor(m => m.Signature, new { @class = "large text" })
+        @Html.ValidationMessage("Signature", "*")
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Version)" >@T("Paypal API Version")</label>
+        @Html.TextBoxFor(m => m.Version, new { @class = "text-small" })
+        @Html.ValidationMessage("Version", "*")
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.SandboxApiBaseUrl)">@T("Sandbox API Base Url")</label>
+        @Html.TextBoxFor(m => m.SandboxApiBaseUrl, new { @class = "large text" })
+        @Html.ValidationMessage("SandboxApiBaseUrl", "*")
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.SandboxAuthorizationBaseUrl)">@T("Sandbox Authorization Base Url")</label>
+        @Html.TextBoxFor(m => m.SandboxAuthorizationBaseUrl, new { @class = "large text" })
+        @Html.ValidationMessage("SandboxAuthorizationBaseUrl", "*")
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.LiveApiBaseUrl)">@T("Live API Base Url")</label>
+        @Html.TextBoxFor(m => m.LiveApiBaseUrl, new { @class = "large text" })
+        @Html.ValidationMessage("LiveApiBaseUrl", "*")
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.LiveAuthorizationBaseUrl)">@T("Live Authorization Base Url")</label>
+        @Html.TextBoxFor(m => m.LiveAuthorizationBaseUrl, new { @class = "large text" })
+        @Html.ValidationMessage("LiveAuthorizationBaseUrl", "*")
+    </div>
+    <div>
+        @Html.EditorFor(m => m.Sandbox)
+        <label for="@Html.FieldIdFor(m => m.Sandbox)" class="forcheckbox">@T("Sandbox?")</label>
+        @Html.ValidationMessage("Sandbox", "*")
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Currency)">@T("Currency code")</label>
+        @Html.TextBoxFor(m => m.Currency, new { @class = "text-small" })
+        @Html.ValidationMessage("Currency", "*")
+    </div>
+</fieldset>
