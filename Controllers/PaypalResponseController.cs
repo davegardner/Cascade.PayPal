@@ -1,11 +1,11 @@
-﻿using System.Web.Mvc;
-using Cascade.Paypal.Models;
+﻿using Cascade.Paypal.Models;
 using Cascade.Paypal.Services;
 using Cascade.WebShop.Models;
 using Cascade.WebShop.Services;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Mvc;
+using System.Web.Mvc;
 
 namespace Cascade.Paypal.Controllers
 {
@@ -34,18 +34,6 @@ namespace Cascade.Paypal.Controllers
             string baseUrl = "http://" + Request.Url.Authority + Request.Path;
             paypalExpressPart.CancelUrl = baseUrl + "/Cancel";
             paypalExpressPart.SuccessUrl = baseUrl + "/Success";
-
-            //// Here are some sandbox values for testing: 
-            //// You need to enter these in the Paypal Setting after the module has been initialized in Orchard.
-            //paypalExpressPart.Version = "95.0";
-            //paypalExpressPart.LiveApiBaseUrl = "";
-            //paypalExpressPart.Sandbox = true;
-            //paypalExpressPart.SandboxApiBaseUrl = "https://api-3t.sandbox.paypal.com/nvp";
-            //paypalExpressPart.SandboxAuthorizationBaseUrl = "https://www.sandbox.paypal.com/webscr?cmd=_express-checkout";
-            //paypalExpressPart.User = "dagard_1350859107_biz_api1.outlook.com";
-            //paypalExpressPart.Pwd = "1350859123";
-            //paypalExpressPart.Signature = "AmZe252r-NKWJfhGchE9dRVOsVH.AcytryYKrpDMjzYt1e6x6lKlPHiY";
-            //paypalExpressPart.Currency = "AUD"; // iso-4217
 
             // retrieve the order from the repo
             OrderRecord order = _orderService.GetOrderByNumber(orderReference);
