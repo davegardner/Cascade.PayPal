@@ -15,7 +15,7 @@ namespace Cascade.Paypal.Services
             _paypalTransactions = paypalTransactions;
         }
 
-        public void LogTransaction(OrderRecord order, PaypalExpressResult result)
+        public void LogTransaction(OrderPart order, PaypalExpressResult result)
         {
             TransactionRecord transaction = new TransactionRecord { 
                 Token = result.Token, 

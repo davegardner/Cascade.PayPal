@@ -38,7 +38,7 @@ namespace Cascade.Paypal.Services
         /// <param name="paypalExpressPart">part</param>
         /// <param name="order">WebShop order</param>
         /// <returns>result containing token and ack</returns>
-        public PaypalExpressResult SetExpressCheckout(PaypalExpressPart paypalExpressPart, OrderRecord order)
+        public PaypalExpressResult SetExpressCheckout(PaypalExpressPart paypalExpressPart, OrderPart order)
         {
             PaypalExpressResult result = new PaypalExpressResult { Method = "SetExpressCheckout" };
             HttpWebRequest request = BuildSetRequest(paypalExpressPart, order);
@@ -93,7 +93,7 @@ namespace Cascade.Paypal.Services
         /// <param name="token">Paypal token</param>
         /// <param name="payerId">Paypal PayerId</param>
         /// <returns>result containing token and ack</returns>
-        public PaypalExpressResult DoExpressCheckoutPayment(PaypalExpressPart paypalExpressPart, OrderRecord order, string token, string payerId)
+        public PaypalExpressResult DoExpressCheckoutPayment(PaypalExpressPart paypalExpressPart, OrderPart order, string token, string payerId)
         {
             PaypalExpressResult result = new PaypalExpressResult { Method = "DoExpressCheckoutPayment" };
             HttpWebRequest request = BuildExpressCheckoutPaymentRequest(paypalExpressPart, order, token, payerId);
@@ -116,7 +116,7 @@ namespace Cascade.Paypal.Services
 
         }
 
-        private HttpWebRequest BuildExpressCheckoutPaymentRequest(PaypalExpressPart paypalExpressPart, OrderRecord order, string token, string payerId)
+        private HttpWebRequest BuildExpressCheckoutPaymentRequest(PaypalExpressPart paypalExpressPart, OrderPart order, string token, string payerId)
         {
             // Create the web request  
             HttpWebRequest request = WebRequest.Create(paypalExpressPart.ApiUrl) as HttpWebRequest;
@@ -144,7 +144,7 @@ namespace Cascade.Paypal.Services
             return request;
         }
 
-        private HttpWebRequest BuildSetRequest(PaypalExpressPart paypalExpressPart, OrderRecord order)
+        private HttpWebRequest BuildSetRequest(PaypalExpressPart paypalExpressPart, OrderPart order)
         {
             // Create the web request  
             HttpWebRequest request = WebRequest.Create(paypalExpressPart.ApiUrl) as HttpWebRequest;
@@ -176,16 +176,16 @@ namespace Cascade.Paypal.Services
             return request;
         }
 
-        private void SetShippingAddress(PaypalRequest pr, OrderRecord order)
+        private void SetShippingAddress(PaypalRequest pr, OrderPart order)
         {
             bool addrOverride = true;
             CustomerPart customer = _customerService.GetCustomer(order.CustomerId);
 
             // determine which address to use
-            var address = _customerService.GetAddress(order.CustomerId, "ShippingAddress");
-            if (address == null)
-                address = _customerService.GetAddress(order.CustomerId, "InvoiceAddress");
-            if (address == null)
+            var address = _customerService.GetShippingAddress(order.CustomerId, order.Id);
+            if (address == null || String.IsNullOrWhiteSpace(address.Address))
+                address = _customerService.GetInvoiceAddress(order.CustomerId);
+            if (address == null || String.IsNullOrWhiteSpace(address.Address))
                 addrOverride = false;
 
             pr.Add("ADDROVERRIDE", addrOverride ? "1" : "0");
@@ -209,14 +209,14 @@ namespace Cascade.Paypal.Services
         }
 
     
-        private void AddAllItems(PaypalRequest pr, OrderRecord order)
+        private void AddAllItems(PaypalRequest pr, OrderPart order)
         {
             int lineNumber = 0;
             foreach (var item in order.Details)
                 AddItem(pr, ++lineNumber, item);
         }
 
-        private void AddItem(PaypalRequest pr, int lineNumber, OrderDetailRecord detail)
+        private void AddItem(PaypalRequest pr, int lineNumber, OrderDetail detail)
         {
             //var productPart = _services.ContentManager.Get<ProductPart>(detail.ProductPartRecord_Id);
 

@@ -6,7 +6,7 @@ namespace Cascade.Paypal.Services
 {
     public interface IPaypalTransactionService : IDependency
     {
-        void LogTransaction(OrderRecord order, PaypalExpressResult result);
+        void LogTransaction(OrderPart order, PaypalExpressResult result);
         int GetOrderId(string paypalToken);
     }
 }

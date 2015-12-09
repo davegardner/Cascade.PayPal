@@ -6,9 +6,9 @@ namespace Cascade.Paypal.Services
 {
     public interface IPaypalExpressServices : IDependency
     {
-        PaypalExpressResult SetExpressCheckout(PaypalExpressPart paypalExpressPart, OrderRecord order);
+        PaypalExpressResult SetExpressCheckout(PaypalExpressPart paypalExpressPart, OrderPart order);
         PaypalExpressResult GetExpressCheckoutDetails(PaypalExpressPart paypalExpressPart, string token);
-        PaypalExpressResult DoExpressCheckoutPayment(PaypalExpressPart paypalExpressPart, OrderRecord order, string token, string payerId);
+        PaypalExpressResult DoExpressCheckoutPayment(PaypalExpressPart paypalExpressPart, OrderPart order, string token, string payerId);
         //Todo: refunds
     }
 }

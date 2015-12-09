@@ -36,7 +36,7 @@ namespace Cascade.Paypal.Controllers
             paypalExpressPart.SuccessUrl = baseUrl + "/Success";
 
             // retrieve the order from the repo
-            OrderRecord order = _orderService.GetOrderByNumber(orderReference);
+            OrderPart order = _orderService.GetOrderByNumber(orderReference);
 
             // call PaymentExpressService
             PaypalExpressResult result = _paypalExpressServices.SetExpressCheckout(paypalExpressPart, order);
@@ -67,7 +67,7 @@ namespace Cascade.Paypal.Controllers
             string orderReference = (orderId + 1000).ToString();
 
             // retrieve the order
-            OrderRecord order = _orderService.GetOrderByNumber(orderReference);
+            OrderPart order = _orderService.GetOrderByNumber(orderReference);
 
             // Call GetExpressCheckoutDetails
             PaypalExpressPart paypalExpressPart = _services.WorkContext.CurrentSite.As<PaypalExpressPart>();
