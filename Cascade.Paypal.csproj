@@ -122,7 +122,7 @@
     <Content Include="Views\UnableToContactPaypal.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Placement.info" />
+    <Content Include="Placement.info" />
     <Content Include="README.md" />
   </ItemGroup>
   <PropertyGroup>
