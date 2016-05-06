@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Records;
+using Orchard.ContentManagement.Handlers;
 using Orchard.ContentManagement.Utilities;
 
 namespace Cascade.Paypal.Models

@@ -2,7 +2,7 @@
 using System.Text;
 using Cascade.Paypal.Models;
 using Orchard.ContentManagement;
-using Orchard.ContentManagement.Utilities;
+using Orchard.ContentManagement.Handlers;
 using Orchard.Data;
 using Orchard.Localization;
 using Orchard.Logging;
